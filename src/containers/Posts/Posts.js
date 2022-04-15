@@ -23,7 +23,6 @@ const Posts = (props) => {
                                                     content={post.content}
                                                     author={post.author}
                                                     key={post.id}
-                                                    setSelected={() => {props.setSelected(post.id)}}
                                                 />);
     return (
         <>

@@ -3,6 +3,7 @@ import './Dashboard.css';
 import Posts from "../../containers/Posts/Posts";
 import PostDetails from "../../components/PostDetails/PostDetails";
 import NewPost from "../../components/NewPost/NewPost";
+import {SelectedId} from "../../store/SelectedId";
 
 const Dashboard = () => {
 
@@ -17,7 +18,7 @@ const Dashboard = () => {
     //     price:""
     // });
 
-    const setSelected = (id) => {
+    const setSelectedId = (id) => {
         setSelectedState(id);
     };
 
@@ -32,17 +33,19 @@ const Dashboard = () => {
 
     return (
         <div>
-            <div className="Post">
-                <Posts setSelected={setSelected} fetchFlag={fetchFlag}/>
-            </div>
+            <SelectedId.Provider value={setSelectedId}>
+                <div className="Post">
+                    <Posts fetchFlag={fetchFlag}/>
+                </div>
 
-            <div>
-                <PostDetails id={selectedState} changeFetchFlag={changeFetchFlag}/>
-            </div>
+                <div>
+                    <PostDetails id={selectedState} changeFetchFlag={changeFetchFlag}/>
+                </div>
 
-            <div>
-                <NewPost changeFetchFlag={changeFetchFlag}/>
-            </div>
+                <div>
+                    <NewPost changeFetchFlag={changeFetchFlag}/>
+                </div>
+            </SelectedId.Provider>
         </div>
     );
 };

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './Posts.css';
 import axios from "axios";
 import Post from "../../components/Post/Post";
+import PostDetails from "../../components/PostDetails/PostDetails";
+import {Link} from "react-router-dom";
 
 const Posts = (props) => {
 
@@ -15,19 +17,25 @@ const Posts = (props) => {
 
     useEffect(() => {
         fetchPosts();
-    }, [props.fetchFlag]);
+    }, []);
 
-    const postsList = posts.map(post => <Post
-                                                    pid={post.id}
-                                                    title={post.title}
-                                                    content={post.content}
-                                                    author={post.author}
-                                                    key={post.id}
-                                                />);
+    const postsList = posts.map(post =>{
+       return(
+           <Link to={`${post.id}`} key={post.id}>
+                    <Post
+                        pid={post.id}
+                        title={post.title}
+                        content={post.content}
+                        author={post.author}
+                        key={post.id}
+                    />
+        </Link>);
+});
     return (
-        <>
+        <div className="Post">
             {postsList}
-        </>
+            <PostDetails />
+        </div>
     );
 };
 

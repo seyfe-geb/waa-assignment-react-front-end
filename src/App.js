@@ -1,15 +1,19 @@
 
 import './App.css';
 import Dashboard from "./pages/Dashboard/Dashboard";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Post Viewing System</h1>
+      <BrowserRouter>
+          <div className="App">
+              <h1>Post Viewing System</h1>
 
-      <Dashboard />
+              <Dashboard />
 
-    </div>
+          </div>
+      </BrowserRouter>
+
   );
 }
 
